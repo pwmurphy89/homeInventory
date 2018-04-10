@@ -98,3 +98,21 @@ const loadDatabase = function (localStorageKey) {
     return JSON.parse(databaseString)
 }
 saveDatabase(HomeInventoryDatabase, "HomeInventory");
+
+const inventoryEl = document.querySelector("#my-inventory");
+
+for(let type in HomeInventoryDatabase){
+    const currentTypeArray = HomeInventoryDatabase[type];
+    currentTypeArray.forEach(itemInArray => {
+        const itemSection = document.createElement("section");
+        
+        for(let prop in itemInArray){
+            const pComponent = document.createElement("p")
+            pComponent.textContent = itemInArray[prop]
+            itemSection.appendChild(pComponent)
+            inventoryEl.appendChild(itemSection)
+        }
+    });
+}
+
+
